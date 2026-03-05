@@ -9,7 +9,7 @@ Features:
 - Flask backend with HTML/CSS frontend
 
 Tech Stack:
-Python
-Flask
-Scikit-learn
-HTML/CSS
+Python,
+Flask,
+Scikit-learn,
+HTML/CSS,
