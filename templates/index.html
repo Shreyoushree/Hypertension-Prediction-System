@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Hypertension Detection System</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<header>
+
+<div class="header-container">
+
+<div class="logo-area">
+<div class="logo-circle"></div>
+
+<div>
+<h1>Hypertension Detection</h1>
+<p>Advanced AI Cardiovascular Risk Platform</p>
+</div>
+</div>
+
+<div class="badges">
+<span class="badge"><i class="fa-solid fa-heart-pulse"></i> Medical Grade</span>
+<span class="badge"><i class="fa-solid fa-brain"></i> AI Powered</span>
+</div>
+
+</div>
+
+</header>
+
+
+<div class="container">
+
+<div class="card">
+
+<h2>Comprehensive Health Assessment</h2>
+
+<form action="/predict" method="post">
+
+<div class="grid">
+
+<div class="field">
+<label><i class="fa fa-user"></i> Gender</label>
+<select name="gender">
+<option value="0" {% if form_data.get('gender')=='0' %}selected{% endif %}>Female</option>
+<option value="1" {% if form_data.get('gender')=='1' %}selected{% endif %}>Male</option>
+</select>
+</div>
+
+
+<div class="field">
+<label><i class="fa fa-calendar"></i> Age</label>
+<select name="age">
+<option value="0" {% if form_data.get('age')=='0' %}selected{% endif %}>18-34</option>
+<option value="1" {% if form_data.get('age')=='1' %}selected{% endif %}>35-50</option>
+<option value="2" {% if form_data.get('age')=='2' %}selected{% endif %}>50+</option>
+</select>
+</div>
+
+
+<div class="field">
+<label><i class="fa fa-dna"></i> Family History</label>
+<select name="history">
+<option value="0" {% if form_data.get('history')=='0' %}selected{% endif %}>No</option>
+<option value="1" {% if form_data.get('history')=='1' %}selected{% endif %}>Yes</option>
+</select>
+</div>
+
+
+<div class="field">
+<label><i class="fa fa-hospital-user"></i> Medical Care</label>
+<select name="patient">
+<option value="0" {% if form_data.get('patient')=='0' %}selected{% endif %}>No</option>
+<option value="1" {% if form_data.get('patient')=='1' %}selected{% endif %}>Yes</option>
+</select>
+</div>
+
+
+<div class="field">
+<label><i class="fa fa-pills"></i> Medication</label>
+<select name="medication">
+<option value="0" {% if form_data.get('medication')=='0' %}selected{% endif %}>No</option>
+<option value="1" {% if form_data.get('medication')=='1' %}selected{% endif %}>Yes</option>
+</select>
+</div>
+
+
+<div class="field">
+<label><i class="fa fa-triangle-exclamation"></i> Severity</label>
+<select name="severity">
+<option value="0" {% if form_data.get('severity')=='0' %}selected{% endif %}>Mild</option>
+<option value="1" {% if form_data.get('severity')=='1' %}selected{% endif %}>Moderate</option>
+<option value="2" {% if form_data.get('severity')=='2' %}selected{% endif %}>Severe</option>
+</select>
+</div>
+
+
+<div class="field">
+<label><i class="fa fa-lungs"></i> Shortness of Breath</label>
+<select name="breath">
+<option value="0" {% if form_data.get('breath')=='0' %}selected{% endif %}>No</option>
+<option value="1" {% if form_data.get('breath')=='1' %}selected{% endif %}>Yes</option>
+</select>
+</div>
+
+
+<div class="field">
+<label><i class="fa fa-eye"></i> Vision Changes</label>
+<select name="vision">
+<option value="0" {% if form_data.get('vision')=='0' %}selected{% endif %}>No</option>
+<option value="1" {% if form_data.get('vision')=='1' %}selected{% endif %}>Yes</option>
+</select>
+</div>
+
+
+<div class="field">
+<label><i class="fa fa-droplet"></i> Nose Bleeding</label>
+<select name="nose">
+<option value="0" {% if form_data.get('nose')=='0' %}selected{% endif %}>No</option>
+<option value="1" {% if form_data.get('nose')=='1' %}selected{% endif %}>Yes</option>
+</select>
+</div>
+
+
+<div class="field">
+<label><i class="fa fa-clock"></i> Diagnosis Time</label>
+<select name="diagnosed">
+<option value="0" {% if form_data.get('diagnosed')=='0' %}selected{% endif %}>Less than 1 year</option>
+<option value="1" {% if form_data.get('diagnosed')=='1' %}selected{% endif %}>1-5 years</option>
+<option value="2" {% if form_data.get('diagnosed')=='2' %}selected{% endif %}>5+ years</option>
+</select>
+</div>
+
+
+<div class="field">
+<label><i class="fa fa-heart-pulse"></i> Systolic Pressure</label>
+<select name="systolic">
+<option value="0" {% if form_data.get('systolic')=='0' %}selected{% endif %}>Below 100</option>
+<option value="1" {% if form_data.get('systolic')=='1' %}selected{% endif %}>100-110</option>
+<option value="2" {% if form_data.get('systolic')=='2' %}selected{% endif %}>110-120</option>
+<option value="3" {% if form_data.get('systolic')=='3' %}selected{% endif %}>120-130</option>
+<option value="4" {% if form_data.get('systolic')=='4' %}selected{% endif %}>130-140</option>
+<option value="5" {% if form_data.get('systolic')=='5' %}selected{% endif %}>140+</option>
+</select>
+</div>
+
+
+<div class="field">
+<label><i class="fa fa-heart"></i> Diastolic Pressure</label>
+<select name="diastolic">
+<option value="0" {% if form_data.get('diastolic')=='0' %}selected{% endif %}>Below 70</option>
+<option value="1" {% if form_data.get('diastolic')=='1' %}selected{% endif %}>70-80</option>
+<option value="2" {% if form_data.get('diastolic')=='2' %}selected{% endif %}>80-90</option>
+<option value="3" {% if form_data.get('diastolic')=='3' %}selected{% endif %}>90-100</option>
+<option value="4" {% if form_data.get('diastolic')=='4' %}selected{% endif %}>100+</option>
+</select>
+</div>
+
+
+<div class="field">
+<label><i class="fa fa-apple-whole"></i> Healthy Diet</label>
+<select name="diet">
+<option value="0" {% if form_data.get('diet')=='0' %}selected{% endif %}>No</option>
+<option value="1" {% if form_data.get('diet')=='1' %}selected{% endif %}>Yes</option>
+</select>
+</div>
+
+</div>
+
+<button type="submit">Generate Risk Assessment</button>
+
+</form>
+
+
+{% if prediction_text %}
+
+<div class="result" style="border-left:8px solid {{color}}">
+
+<h2>{{prediction_text}}</h2>
+
+<p><b>Confidence:</b> {{confidence}}%</p>
+
+<div class="progress">
+<div class="progress-fill" style="width: {{confidence}}%; background: {{color}};"></div>
+</div>
+
+<h3>Clinical Recommendations</h3>
+
+<ul>
+{% for r in recommendations %}
+<li>{{r}}</li>
+{% endfor %}
+</ul>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</body>
+</html>
